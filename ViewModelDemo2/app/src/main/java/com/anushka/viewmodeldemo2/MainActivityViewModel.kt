@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel(startingTotal: Int) : ViewModel() {
 	private var total = MutableLiveData<Int>()
+	val inputText = MutableLiveData<String>()
 	val totalData: LiveData<Int>
 		get() = total
 
@@ -13,7 +14,12 @@ class MainActivityViewModel(startingTotal: Int) : ViewModel() {
 		total.value = startingTotal
 	}
 
-	fun setTotal(input: Int) {
-		total.value = (totalData.value)?.plus(input)
+	fun setTotal() {
+		val inputInt = if (!inputText.value.isNullOrEmpty()) {
+			inputText.value!!.toIntOrNull() ?: 0
+		} else {
+			0
+		}
+		total.value = (totalData.value)?.plus(inputInt)
 	}
 }
