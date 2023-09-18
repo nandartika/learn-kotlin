@@ -11,5 +11,8 @@ data class Student(
     val id : Int,
 
     @ColumnInfo(name = "student_name")
-    var name : String
+    var name : String,
+
+    @ColumnInfo(name = "student_email", defaultValue = "No Email")
+    var email : String,
 )
